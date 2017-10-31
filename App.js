@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './components/Home';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Close up App.js to start working on your app!</Text>
-        <Text>Testing blah blach</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+          <Home />
       </View>
     );
   }
@@ -15,9 +14,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#888',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
 });
