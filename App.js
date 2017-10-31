@@ -43,9 +43,10 @@ class HomeScreen extends React.Component {
                     //ref:{(input) => this.destinationInput = input}
                 />
 
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.button}
-                    onPress= {()=> navigate('Map')}> SEARCH1
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress= {()=> navigate('Map')}>
+                    <Text style={styles.button}> SEARCH
                     </Text>
                 </TouchableOpacity>
             </View>
