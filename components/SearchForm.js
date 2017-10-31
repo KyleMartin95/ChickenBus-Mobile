@@ -24,7 +24,9 @@ export default class SearchForm extends React.Component {
                 />
 
                 <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.button}>SEARCH</Text>
+                    <Text style={styles.button}
+                    onPress= {()=> navigate('Map')}>
+                    SEARCH1</Text>
                 </TouchableOpacity>
             </View>
         );

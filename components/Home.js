@@ -4,6 +4,7 @@ import SearchForm from './SearchForm';
 import { StackNavigator } from 'react-navigation';
 import Map from './Map';
 
+
 export default class Home extends React.Component {
   static navigationOptions = {
     title: 'Home',
