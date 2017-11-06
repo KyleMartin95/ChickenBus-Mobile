@@ -2,14 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import { StackNavigator } from 'react-navigation';
-import Home from './Home';
+import home from './home';
 
-export default class Map extends React.Component {
-  static navigationOptions = {
-    title: 'Map',
-  };
+export default class map extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
+    //const { latitude, longitude, etc } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <MapView style={styles.container} initialRegion={initialRegion.location} provider={MapView.PROVIDER_GOOGLE} />
