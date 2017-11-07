@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import { StackNavigator } from 'react-navigation';
-import Home from './Home';
+import Home from './home';
 
 export default class Map extends React.Component {
 constructor(props) {

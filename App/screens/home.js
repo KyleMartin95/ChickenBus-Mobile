@@ -10,8 +10,8 @@ import {
   ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Map from './Map';
-import Profile from './Profile';
+import Map from './map';
+import Profile from './profile';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class Home extends React.Component {
@@ -35,7 +35,7 @@ export default class Home extends React.Component {
           <View style={styles.logoContainer}>
             <Image
               style={styles.logo}
-              source={require('./Images/chickenOrigin.png')}
+              source={require('./images/chickenOrigin.png')}
             />
           </View>
           <KeyboardAvoidingView behavior='padding' style={styles.container}>

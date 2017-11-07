@@ -2,9 +2,9 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 //import { Icon } from 'react-native-elements';
 
-import Home from './Screens/Home';
-import Map from './Screens/Map';
-import Profile from './Screens/Profile';
+import Home from './screens/home';
+import Map from './screens/map';
+import Profile from './screens/profile';
 
 export const Stack = StackNavigator({
   Home: {
