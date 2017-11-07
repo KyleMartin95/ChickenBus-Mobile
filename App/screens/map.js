@@ -5,11 +5,22 @@ import { StackNavigator } from 'react-navigation';
 import Home from './Home';
 
 export default class Map extends React.Component {
+constructor(props) {
+  super(props);
+}
+
   render() {
     //const { latitude, longitude, etc } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
-        <MapView style={styles.container} initialRegion={initialRegion.location} provider={MapView.PROVIDER_GOOGLE} />
+        <MapView style={styles.container} initialRegion={initialRegion.location} provider={MapView.PROVIDER_GOOGLE}>
+          {this.props.origin ? <MapView.Marker
+                                  coordinate={ this.props.origin}
+                                  />: null }
+          {this.props.destination ?<MapView.Marker
+                                  coordinate={ this.props.destination}
+                                  />: null }}
+        </MapView>
       </View>
     );
   }
