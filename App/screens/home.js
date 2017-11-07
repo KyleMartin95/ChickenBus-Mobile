@@ -26,6 +26,8 @@ export default class Home extends React.Component {
   }
 
   onAutocompletePress(value, details, isOrigin) {
+      console.log("ran and added")
+      console.log(details.geometry.location)
     if(isOrigin) {
       this.setState({
         origin: details.geometry.location
@@ -53,11 +55,14 @@ export default class Home extends React.Component {
           </View>
           <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <View style={styles.container1}>
-              <Profile text='Origin' onPress={ this.onAutocompletePress } isOrigin={ true }/>
-              <Profile text='Destination' onPress={ this.onAutocompletePress } isOrigin={ false }/>
+              <Profile text='Origin' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ true }/>
+              <Profile text='Destination' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ false }/>
               <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress= {() => navigate('Map', {origin: this.state.origin, destination: this.state.destination})}>
+                onPress= {() => {
+                    console.log(this.state)
+                    navigate('Map', {origin: this.state.origin, destination: this.state.destination})}
+                }>
                 <Text style={styles.button}>
                     SEARCH
                 </Text>

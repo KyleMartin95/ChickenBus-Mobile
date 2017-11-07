@@ -19,7 +19,7 @@ export default class Profile extends Component {
         fetchDetails={true}
         renderDescription={row => row.description} // custom description render
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-          console.log(data, details);
+            this.props.onPress(data, details, this.props.isOrigin);
         }}
 
         getDefaultValue={() => ''}

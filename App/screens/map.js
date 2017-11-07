@@ -7,27 +7,38 @@ import Home from './home';
 export default class Map extends React.Component {
 constructor(props) {
   super(props);
+  this.state = {}
 }
 
   render() {
-    //const { latitude, longitude, etc } = this.props.navigation.state.params;
+      console.log("in render")
+      console.log(this.state.origin)
+      console.log(this.state.destination)
+
+          //const { latitude, longitude, etc } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <MapView style={styles.container} initialRegion={initialRegion.location} provider={MapView.PROVIDER_GOOGLE}>
-          {this.props.origin ? <MapView.Marker
-                                  coordinate={ this.props.origin}
+          {this.state.origin ? <MapView.Marker
+                                  coordinate={ {latitude: this.state.origin.lat, longitude: this.state.origin.lng}}
                                   />: null }
-          {this.props.destination ?<MapView.Marker
-                                  coordinate={ this.props.destination}
+          {this.state.destination ?<MapView.Marker
+                                  coordinate={ {latitude: this.state.destination.lat, longitude: this.state.destination.lng}}
                                   />: null }
         </MapView>
       </View>
     );
   }
 
-  componentWillReceiveProps() {
-    
-    }
+  componentWillReceiveProps(newProps) {
+      console.log(newProps)
+        if(newProps.navigation.state.params) {
+            this.setState({
+                origin: newProps.navigation.state.params.origin,
+                destination: newProps.navigation.state.params.destination,
+            })
+        }
+  }
 }
 
 const styles = StyleSheet.create({
