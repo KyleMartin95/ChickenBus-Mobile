@@ -2,43 +2,43 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 //import { Icon } from 'react-native-elements';
 
-import home from './screens/home';
-import map from './screens/map';
-import profile from './screens/profile';
+import Home from './Screens/Home';
+import Map from './Screens/Map';
+import Profile from './Screens/Profile';
 
 export const Stack = StackNavigator({
-  home: {
-    screen: home,
+  Home: {
+    screen: Home,
   },
-  map: {
-    screen: map,
+  Map: {
+    screen: Map,
   },
-  profile: {
-    screen: profile,
+  Profile: {
+    screen: Profile,
   }
 
 });
 
 export const Tabs = TabNavigator({
 
-  home:{
-    screen: home,
+  Home:{
+    screen: Home,
     navigationOptions: {
       header: null,
       tabBarLabel: 'Home',
       //icon: ({ tintColor }) => <Icon name="list" size ={35} color={tintColor}/>
     },
   },
-  map:{
-    screen: map,
+  Map:{
+    screen: Map,
     navigationOptions: {
       header: null,
       tabBarLabel: 'Map',
       //icon: ({ tintColor }) => <Icon name="egg" size ={35} color={tintColor}/>
     }
   },
-  profile:{
-    screen: profile,
+  Profile:{
+    screen: Profile,
     navigationOptions: {
       header: null,
       tabBarLabel: 'Profile',

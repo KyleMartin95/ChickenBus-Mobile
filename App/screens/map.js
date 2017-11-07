@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import { StackNavigator } from 'react-navigation';
-import home from './home';
+import Home from './Home';
 
-export default class map extends React.Component {
+export default class Map extends React.Component {
   render() {
     //const { latitude, longitude, etc } = this.props.navigation.state.params;
     return (

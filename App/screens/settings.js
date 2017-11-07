@@ -5,7 +5,7 @@ import {
   ScrollView
 } from 'react-native';
 
-export default class settings extends Component {
+export default class Settings extends Component {
 
   render(){
     return()

@@ -6,12 +6,15 @@ import {
   Image,
   KeyboardAvoidingView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import map from './map';
+import Map from './Map';
+import Profile from './Profile';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-export default class home extends React.Component {
+export default class Home extends React.Component {
 
   constructor(props) {
     super(props);
@@ -21,53 +24,34 @@ export default class home extends React.Component {
     }
   }
 
-
-
   render() {
     const { navigate } = this.props.navigation;
       return (
-        <View style={styles.container}>
-        <Text style={styles.title}>
-          Building Bus Routes and Networks
-          for 3rd World Countries
-        </Text>
+        <ScrollView style={styles.container}>
+          <Text style={styles.title}>
+            Building Bus Routes and Networks
+            for 3rd World Countries
+          </Text>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require('./Images/chickenOrigin.png')}
+            />
+          </View>
           <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <View style={styles.container1}>
-              <TextInput
-                style={styles.input}
-                placeholder='ORIGIN'
-                placeholderTextColor='rgba(255, 255, 255, 0.7)'
-                //onChangeText={ (origin) => this.setState({origin}) }
-                returnKeyType='next'
-                //onSubmitEditing: {() => this.destinationInput.focus()}
-
-              />
-              <TextInput
-                style={styles.input}
-                placeholder='DESTINATION'
-                placeholderTextColor='rgba(255, 255, 255, 0.7)'
-                //onChangeText={ (destination) => this.setState({destination}) }
-                returnKeyType='go'
-                //ref:{(input) => this.destinationInput = input}
-
-              />
+              <Profile text='Origin'/>
+              <Profile text='Destination'/>
               <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress= {() => navigate('map')}>
+                onPress= {() => navigate('Map')}>
                 <Text style={styles.button}>
                     SEARCH
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={require('./images/chickenOrigin.png')}
-              />
-
-            </View>
           </KeyboardAvoidingView>
-        </View>
+        </ScrollView>
         );
     }
 }
@@ -92,7 +76,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
   },
   container1: {
-      marginTop: 60,
+      marginBottom: 40,
       flex: 1,
   },
   input: {
@@ -106,7 +90,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#2980B9',
       paddingVertical: 15,
       paddingHorizontal: 10,
-      marginTop: 20
+      marginBottom: 20
   },
   button: {
       textAlign: 'center',
