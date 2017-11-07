@@ -19,11 +19,15 @@ constructor(props) {
                                   />: null }
           {this.props.destination ?<MapView.Marker
                                   coordinate={ this.props.destination}
-                                  />: null }}
+                                  />: null }
         </MapView>
       </View>
     );
   }
+
+  componentWillReceiveProps() {
+    
+    }
 }
 
 const styles = StyleSheet.create({

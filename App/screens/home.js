@@ -21,6 +21,19 @@ export default class Home extends React.Component {
     this.state = {
       origin: '',
       destination: '',
+
+    }
+  }
+
+  onAutocompletePress(value, details, isOrigin) {
+    if(isOrigin) {
+      this.setState({
+        origin: details.geometry.location
+      })
+    } else {
+      this.setState({
+        destination: details.geometry.location
+      })
     }
   }
 
@@ -40,11 +53,11 @@ export default class Home extends React.Component {
           </View>
           <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <View style={styles.container1}>
-              <Profile text='Origin'/>
-              <Profile text='Destination'/>
+              <Profile text='Origin' onPress={ this.onAutocompletePress } isOrigin={ true }/>
+              <Profile text='Destination' onPress={ this.onAutocompletePress } isOrigin={ false }/>
               <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress= {() => navigate('Map')}>
+                onPress= {() => navigate('Map', {origin: this.state.origin, destination: this.state.destination})}>
                 <Text style={styles.button}>
                     SEARCH
                 </Text>
