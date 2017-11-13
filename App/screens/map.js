@@ -22,34 +22,34 @@ constructor(props) {
           {this.state.destination ?<MapView.Marker
                                   coordinate={ {latitude: this.state.destination.lat, longitude: this.state.destination.lng}}
                                   />: null }
-          {this.state.coords ? <MapView.Polyline coordinates={...this.state.coords}/> : null}
+          {this.state.coords ? <MapView.Polyline strokeWidth={4} coordinates={[...this.state.coords]}/> : null}
         </MapView>
       </View>
     );
   }
-  
+
   componentWillReceiveProps(newProps) {
-        if(newProps.navigation.state.params) {  
+        if(newProps.navigation.state.params) {
           // Set up variables for api call to get points for line between two points
           var mode = 'driving'; // 'walking';
           var origin = newProps.navigation.state.params.origin;
           var destination = newProps.navigation.state.params.destination;
           var APIKEY = 'AIzaSyBUAfME2CHwOHyq4fT9VuMzkm7fIKpWNnY';
           var url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APIKEY}&mode=${mode}`;
-          
-          var that = this;
+
           fetch(url)
           .then(response => response.json())
           .then(responseJson => {
               if (responseJson.routes.length) {
-                  that.setState({
+                  console.log(this.decode(responseJson.routes[0].overview_polyline.points));
+                  this.setState({
                       coords: this.decode(responseJson.routes[0].overview_polyline.points), // definition below
                       origin: origin,
                       destination: destination,
                   });
               }
           }).catch(e => {
-            that.setState({
+            this.setState({
               coords: undefined,
               origin: undefined,
               destination: undefined,

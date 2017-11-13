@@ -4,7 +4,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import Home from './screens/home';
 import Map from './screens/map';
-import Profile from './screens/profile';
+import PlaceAutocomplete from './screens/PlaceAutocomplete';
 
 export const Stack = StackNavigator({
   Home: {
@@ -12,11 +12,7 @@ export const Stack = StackNavigator({
   },
   Map: {
     screen: Map,
-  },
-  Profile: {
-    screen: Profile,
   }
-
 });
 
 export const Tabs = TabNavigator({
@@ -37,14 +33,14 @@ export const Tabs = TabNavigator({
       //icon: ({ tintColor }) => <Icon name="egg" size ={35} color={tintColor}/>
     }
   },
-  Profile:{
-    screen: Profile,
-    navigationOptions: {
-      header: null,
-      tabBarLabel: 'Profile',
-      //icon: ({ tintColor }) => <Icon name="account-circle" size ={35} color={tintColor}/>
-    }
-  },
+  // Profile:{
+  //   screen: Profile,
+  //   navigationOptions: {
+  //     header: null,
+  //     tabBarLabel: 'Profile',
+  //     //icon: ({ tintColor }) => <Icon name="account-circle" size ={35} color={tintColor}/>
+  //   }
+  // },
 });
 
 export const Root = StackNavigator({
