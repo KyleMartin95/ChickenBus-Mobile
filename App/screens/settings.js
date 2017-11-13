@@ -8,7 +8,7 @@ import {
 export default class Settings extends Component {
 
   render(){
-    return()
+    return(
       <ScrollView>
         <Text>
         This will be settings

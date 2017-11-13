@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Map from './Map';
-import Profile from './Profile';
+import AutoComplete from './AutoComplete';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default class Home extends React.Component {
@@ -28,20 +28,17 @@ export default class Home extends React.Component {
     const { navigate } = this.props.navigation;
       return (
         <ScrollView style={styles.container}>
-          <Text style={styles.title}>
+          <Text style ={styles.title}>
+            ChickenBus
+          </Text>
+          <Text style={styles.description}>
             Building Bus Routes and Networks
             for 3rd World Countries
           </Text>
-          <View style={styles.logoContainer}>
-            <Image
-              style={styles.logo}
-              source={require('./Images/chickenOrigin.png')}
-            />
-          </View>
-          <KeyboardAvoidingView behavior='padding' style={styles.container}>
+          <KeyboardAvoidingView behavior='padding'>
             <View style={styles.container1}>
-              <Profile text='Origin'/>
-              <Profile text='Destination'/>
+              <AutoComplete text='Origin'/>
+              <AutoComplete text='Destination'/>
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress= {() => navigate('Map')}>
@@ -59,42 +56,39 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E6578',
+    backgroundColor: '#2196F3',
   },
-  logoContainer: {
-      alignItems: 'center',
-      flexGrow: 1,
-      justifyContent: 'center'
-  },
-  logo: {
-      width: 375,
-      height: 200
-  },
+
   title: {
-      color: '#FFF',
-      marginTop: 60,
-      textAlign: 'center'
+    color: '#e3aa1a',
+    marginTop: 60,
+    textAlign: 'center',
+    fontSize: 60,
+    fontWeight: '500',
+    fontFamily: 'Avenir',
   },
   container1: {
-      marginBottom: 40,
-      flex: 1,
-  },
-  input: {
-      height: 40,
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      //marginTop: 30,
-      paddingHorizontal: 10,
-      textAlign: 'center',
+    marginBottom: 40,
+    flex: 1,
   },
   buttonContainer: {
-      backgroundColor: '#2980B9',
-      paddingVertical: 15,
-      paddingHorizontal: 10,
-      marginBottom: 20
+    backgroundColor: '#8BC34A',
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginBottom: 20
   },
   button: {
-      textAlign: 'center',
-      color: '#FFFFFF',
-      fontWeight: '700'
-  }
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: '700'
+  },
+  // logoContainer: {
+  //     alignItems: 'center',
+  //     flexGrow: 1,
+  //     justifyContent: 'center'
+  // },
+  // logo: {
+  //     width: 375,
+  //     height: 200
+  // },
 });

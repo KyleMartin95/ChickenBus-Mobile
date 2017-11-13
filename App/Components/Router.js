@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator} from 'react-navigation';
 //import { Icon } from 'react-native-elements';
 
 import Home from './Screens/Home';
@@ -15,16 +15,14 @@ export const Stack = StackNavigator({
   },
   Profile: {
     screen: Profile,
-  }
-
+  },
 });
 
 export const Tabs = TabNavigator({
-
   Home:{
     screen: Home,
     navigationOptions: {
-      header: null,
+      headerStyle: {backgroundColor: "#2196F3"},
       tabBarLabel: 'Home',
       //icon: ({ tintColor }) => <Icon name="list" size ={35} color={tintColor}/>
     },
@@ -34,16 +32,26 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       header: null,
       tabBarLabel: 'Map',
-      //icon: ({ tintColor }) => <Icon name="egg" size ={35} color={tintColor}/>
     }
   },
   Profile:{
     screen: Profile,
     navigationOptions: {
-      header: null,
+      headerStyle: {backgroundColor: "#2196F3"},
       tabBarLabel: 'Profile',
-      //icon: ({ tintColor }) => <Icon name="account-circle" size ={35} color={tintColor}/>
-    }
+    },
+  },
+ }, {
+  tabBarPosition: 'bottom',
+  animationEnabled: false,
+  tabBarOptions: {
+    activeTintColor: '#2196F3',
+    labelStyle: {
+      fontSize: 20,
+    },
+    style: {
+      backgroundColor: '#e3aa1a',
+    },
   },
 });
 

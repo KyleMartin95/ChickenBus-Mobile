@@ -7,3 +7,11 @@ export default class App extends React.Component {
     return <Root/>;
   }
 }
+
+const colors = {
+    hex: {
+      blue: '#2196F3',
+      green: '#8BC34A',
+      orange: '#e3aa1a',
+    }
+}
