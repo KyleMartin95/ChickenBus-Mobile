@@ -11,8 +11,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Map from './map';
-import Profile from './profile';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import PlaceAutocomplete from './PlaceAutocomplete';
 
 export default class Home extends React.Component {
 
@@ -26,8 +25,6 @@ export default class Home extends React.Component {
   }
 
   onAutocompletePress(value, details, isOrigin) {
-      console.log("ran and added")
-      console.log(details.geometry.location)
     if(isOrigin) {
       this.setState({
         origin: details.geometry.location
@@ -55,8 +52,8 @@ export default class Home extends React.Component {
           </View>
           <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <View style={styles.container1}>
-              <Profile text='Origin' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ true }/>
-              <Profile text='Destination' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ false }/>
+              <PlaceAutocomplete text='Origin' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ true }/>
+              <PlaceAutocomplete text='Destination' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ false }/>
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress= {() => {
@@ -100,7 +97,6 @@ const styles = StyleSheet.create({
   input: {
       height: 40,
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      //marginTop: 30,
       paddingHorizontal: 10,
       textAlign: 'center',
   },

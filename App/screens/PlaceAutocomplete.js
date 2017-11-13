@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import { Text, View, Image } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-export default class Profile extends Component {
+export default class PlaceAutocomplete extends Component {
 
   constructor(props){
     super(props)

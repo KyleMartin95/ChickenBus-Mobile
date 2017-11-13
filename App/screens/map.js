@@ -4,6 +4,8 @@ import { MapView } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import Home from './home';
 
+
+
 export default class Map extends React.Component {
 constructor(props) {
   super(props);
@@ -11,11 +13,6 @@ constructor(props) {
 }
 
   render() {
-      console.log("in render")
-      console.log(this.state.origin)
-      console.log(this.state.destination)
-
-          //const { latitude, longitude, etc } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <MapView style={styles.container} initialRegion={initialRegion.location} provider={MapView.PROVIDER_GOOGLE}>
@@ -25,20 +22,45 @@ constructor(props) {
           {this.state.destination ?<MapView.Marker
                                   coordinate={ {latitude: this.state.destination.lat, longitude: this.state.destination.lng}}
                                   />: null }
+          {this.state.coords ? <MapView.Polyline coordinates={...this.state.coords}/> : null}
         </MapView>
       </View>
     );
   }
-
+  
   componentWillReceiveProps(newProps) {
-      console.log(newProps)
-        if(newProps.navigation.state.params) {
-            this.setState({
-                origin: newProps.navigation.state.params.origin,
-                destination: newProps.navigation.state.params.destination,
-            })
+        if(newProps.navigation.state.params) {  
+          // Set up variables for api call to get points for line between two points
+          var mode = 'driving'; // 'walking';
+          var origin = newProps.navigation.state.params.origin;
+          var destination = newProps.navigation.state.params.destination;
+          var APIKEY = 'AIzaSyBUAfME2CHwOHyq4fT9VuMzkm7fIKpWNnY';
+          var url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APIKEY}&mode=${mode}`;
+          
+          var that = this;
+          fetch(url)
+          .then(response => response.json())
+          .then(responseJson => {
+              if (responseJson.routes.length) {
+                  that.setState({
+                      coords: this.decode(responseJson.routes[0].overview_polyline.points), // definition below
+                      origin: origin,
+                      destination: destination,
+                  });
+              }
+          }).catch(e => {
+            that.setState({
+              coords: undefined,
+              origin: undefined,
+              destination: undefined,
+          });
+            console.warn(e)
+          });
         }
   }
+
+  // transforms something like this geocFltrhVvDsEtA}ApSsVrDaEvAcBSYOS_@... to an array of coordinates
+  decode(t,e){for(var n,o,u=0,l=0,r=0,d= [],h=0,i=0,a=null,c=Math.pow(10,e||5);u<t.length;){a=null,h=0,i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);n=1&i?~(i>>1):i>>1,h=i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);o=1&i?~(i>>1):i>>1,l+=n,r+=o,d.push([l/c,r/c])}return d=d.map(function(t){return{latitude:t[0],longitude:t[1]}})}
 }
 
 const styles = StyleSheet.create({
