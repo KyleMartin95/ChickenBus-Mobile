@@ -1,17 +1,31 @@
-import React, { Component} from 'react';
+import React from 'react';
 import Expo from 'expo';
-import { Root } from './App/Components/Router';
+import { TabNavigator } from 'react-navigation';
+import Home from './App/Screens/Home';
+import Map from './App/Screens/Map';
 
-export default class App extends React.Component {
-  render() {
-    return <Root/>;
+var Root = TabNavigator({
+  Home: { screen: Home },
+  Map: { screen: Map },
+}, {
+  tabBarPosition: 'bottom',
+  swipeEnabled: true,
+  tabBarOptions: {
+    activeTintColor: 'white',
+    activeBackgroundColor: 'blue',
+    inactiveTintColor: 'black',
+    inactiveBackgroundColor: 'orange',
+    labelStyle: {
+      fontSize: 16,
+      padding: 0,
+      fontFamily: 'Avenir',
+    }
   }
 }
+);
 
-const colors = {
-    hex: {
-      blue: '#2196F3',
-      green: '#8BC34A',
-      orange: '#e3aa1a',
-    }
-}
+Root.navigationOptions = {
+  title: "SearchUX"
+};
+
+export default Root;

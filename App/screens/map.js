@@ -1,10 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { MapView } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import Home from './Home';
 
 export default class Map extends React.Component {
+
+static navigationOptions = {
+  tabBarLabel: 'Map',
+  tabBarIcon: ({ tintColor }) => (
+    <Image
+      source={require('../Components/Images/pin.png')}
+      style={{width: 22, height: 22, tintColor: 'white'}}>
+    </Image>
+  )
+}
 
 constructor(props) {
   super(props);

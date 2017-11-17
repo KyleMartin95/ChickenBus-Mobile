@@ -14,7 +14,7 @@ export default class AutoComplete extends Component {
         placeholder={this.props.text}
         minLength={2} // minimum length of text to search
         autoFocus={false}
-        returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+        returnKeyType={this.props.keyType} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
         listViewDisplayed='auto'    // true/false/undefined
         fetchDetails={true}
         renderDescription={row => row.description} // custom description render
@@ -32,11 +32,16 @@ export default class AutoComplete extends Component {
         }}
 
         styles={{
-          textInputContainer: {
-            width: '100%'
+          textInput: {
+            fontFamily: 'Avenir',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
           },
-          description: {
-            fontWeight: 'bold'
+          textInputContainer: {
+            borderColor: 'white',
+            borderTopColor: 'white',
+            backgroundColor: 'white',
+            width: '100%',
           },
         }}
 
