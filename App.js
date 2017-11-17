@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import Expo from 'expo';
-import { Root } from './App/Router';
+import { Root } from './App/Components/Router';
 
 export default class App extends React.Component {
   render() {

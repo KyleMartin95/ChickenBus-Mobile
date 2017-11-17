@@ -11,8 +11,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Map from './Map';
-import AutoComplete from './AutoComplete';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import AutoComplete from '../Components/AutoComplete';
 
 export default class Home extends React.Component {
 
@@ -21,6 +20,19 @@ export default class Home extends React.Component {
     this.state = {
       origin: '',
       destination: '',
+
+    }
+  }
+
+  onAutocompletePress(value, details, isOrigin) {
+    if(isOrigin) {
+      this.setState({
+        origin: details.geometry.location
+      })
+    } else {
+      this.setState({
+        destination: details.geometry.location
+      })
     }
   }
 
@@ -35,13 +47,22 @@ export default class Home extends React.Component {
             Building Bus Routes and Networks
             for 3rd World Countries
           </Text>
-          <KeyboardAvoidingView behavior='padding'>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../Components/Images/top.png')}
+            />
+          </View>
+          <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <View style={styles.container1}>
-              <AutoComplete text='Origin'/>
-              <AutoComplete text='Destination'/>
+              <AutoComplete text='Origin' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ true }/>
+              <AutoComplete text='Destination' onPress={ this.onAutocompletePress.bind(this) } isOrigin={ false }/>
               <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress= {() => navigate('Map')}>
+                onPress= {() => {
+                    navigate('Map', {origin: this.state.origin, destination: this.state.destination})}
+                }
+              >
                 <Text style={styles.button}>
                     SEARCH
                 </Text>
@@ -56,7 +77,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#FFFFFF',
   },
 
   title: {
@@ -71,6 +92,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     flex: 1,
   },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingHorizontal: 10,
+    textAlign: 'center',
+  },
   buttonContainer: {
     backgroundColor: '#8BC34A',
     paddingVertical: 15,
@@ -82,13 +109,13 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '700'
   },
-  // logoContainer: {
-  //     alignItems: 'center',
-  //     flexGrow: 1,
-  //     justifyContent: 'center'
-  // },
-  // logo: {
-  //     width: 375,
-  //     height: 200
-  // },
+  logoContainer: {
+     alignItems: 'center',
+     flexGrow: 1,
+     justifyContent: 'center'
+  },
+  logo: {
+     width: 125,
+     height: 50
+  },
 });

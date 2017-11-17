@@ -17,8 +17,9 @@ export default class AutoComplete extends Component {
         returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
         listViewDisplayed='auto'    // true/false/undefined
         fetchDetails={true}
+        renderDescription={row => row.description} // custom description render
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-          console.log(data, details);
+          this.props.onPress(data, details, this.props.isOrigin);
         }}
 
         getDefaultValue={() => ''}
@@ -31,12 +32,12 @@ export default class AutoComplete extends Component {
         }}
 
         styles={{
-          textInput: {
-            width: '100%',
-          },
           textInputContainer: {
-            backgroundColor: '#2196F3'
-          }
+            width: '100%'
+          },
+          description: {
+            fontWeight: 'bold'
+          },
         }}
 
         //currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list

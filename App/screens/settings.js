@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import {
+  StyleSheet,
   Text,
   View,
   ScrollView
@@ -9,11 +10,18 @@ export default class Settings extends Component {
 
   render(){
     return(
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <Text>
-        This will be settings
+        this will be user settings
         </Text>
-        </ScrollView>
+      </ScrollView>
       )
     }
-}
+  }
+
+  const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 30,
+    },
+  });

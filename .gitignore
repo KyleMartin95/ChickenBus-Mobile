@@ -1,3 +1,14 @@
 node_modules/
 .expo/
 npm-debug.*
+App/Components/AutoComplete.js
+App.js
+App/Components/AutoComplete.js
+App/Components/Router.js
+App/screens/home.js
+App/screens/map.js
+App/screens/PlaceAutocomplete.js
+App/screens/profile.js
+App/screens/settings.js
+App/screens/profile.js
+*.js
