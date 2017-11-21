@@ -18,10 +18,20 @@ static navigationOptions = {
 
 constructor(props) {
   super(props);
-  this.state = {}
+  this.state = {
+    origin: {
+      lat: 0,
+      lng: 0,
+    },
+    destination: {
+      lat: 0,
+      lng: 0,
+    },
+  }
 }
 
 render() {
+  {console.log(this.state)}
   return (
     <View style = { styles.container }>
       <MapView style = { styles.container }
@@ -41,25 +51,19 @@ render() {
               longitude: this.state.destination.lng
             }}
           />: null }
-        { this.state.coords ?
-          <MapView.Polyline
-            strokeWidth={4}
-            coordinates={[...this.state.coords]}
-          /> : null }
         </MapView>
       </View>
+
     );
   }
 
   componentWillReceiveProps(newProps) {
         if(newProps.navigation.state.params) {
-          //console.log(newProps.navigation.state.params)
-          // Set up variables for api call to get points for line between two points
-          //var mode = 'driving';
+          // Set up variables for api call to get points and line between two points
           var origin = newProps.navigation.state.params.origin;
           var destination = newProps.navigation.state.params.destination;
           var APIKEY = 'AIzaSyBUAfME2CHwOHyq4fT9VuMzkm7fIKpWNnY';
-          fetch('http://www.chickenbus-backend-einsler.cloudapps.unc.edu/api/routes/find-near?latOrig='
+          fetch('http://chickenbus-backend-einsler.cloudapps.unc.edu/api/routes/find-near?latOrig='
             + origin.lat
             +'&lngOrig=' + origin.lng
             +'&lngDest=' + destination.lng
@@ -67,21 +71,24 @@ render() {
           )
           .then(response => response.json())
           .then(responseJson => {
-              if (responseJson.routes.length) {
+            //console.log(responseJson)
+              if (responseJson.directions.length == 1) {
                   this.setState({
-                      //coords: this.decode(responseJson.routes[0].overview_polyline.points), // definition below
-                      origin: origin,
-                      destination: destination,
+                    origin: {
+                      lat: responseJson.directions[0].orig[0],
+                      lng: responseJson.directions[0].orig[1],
+                    },
+                    destination: {
+                      lat: responseJson.directions[0].dest[0],
+                      lng: responseJson.directions[0].dest[1],
+                    }
                   });
               }
           }).catch(e => {
             this.setState({
-              //coords: undefined,
               origin: undefined,
               destination: undefined,
           });
-            console.warn(origin.lng)
-            console.warn(e)
           });
         }
   }
