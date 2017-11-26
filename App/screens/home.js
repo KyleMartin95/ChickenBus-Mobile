@@ -56,10 +56,8 @@ export default class Home extends React.Component {
             <Image
               style={styles.logo}
               source={require('../Components/Images/top.png')}
-              />
-              <Text style={styles.description}>
-                Building Bus Routes Globally
-              </Text>
+            />
+            <Text style={styles.description}>Building Bus Routes Globally</Text>
           </View>
           <KeyboardAvoidingView behavior='padding' style={styles.searchContainer}>
             <View style={styles.searchContainer}>
@@ -71,7 +69,7 @@ export default class Home extends React.Component {
                     origin: this.state.origin,
                     destination: this.state.destination
                   }
-              )}}>
+                )}}>
                 <Text style={styles.button}> SEARCH </Text>
               </TouchableOpacity>
             </View>
@@ -104,15 +102,12 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontFamily: 'Avenir',
   },
-  function: {
-
-  },
   searchContainer: {
     flex: 1,
   },
   button: {
     textAlign: 'center',
-    color: 'blue',
+    color: '#007EE9',
     fontWeight: '700',
     fontFamily: 'Avenir'
   },

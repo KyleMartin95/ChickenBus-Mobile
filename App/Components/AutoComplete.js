@@ -12,20 +12,19 @@ export default class AutoComplete extends Component {
     return(
       <GooglePlacesAutocomplete
         placeholder={this.props.text}
-        minLength={2} // minimum length of text to search
+        minLength={2}
         autoFocus={false}
-        returnKeyType={this.props.keyType} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
-        listViewDisplayed='auto'    // true/false/undefined
+        returnKeyType={this.props.keyType}
+        listViewDisplayed='auto'
         fetchDetails={true}
-        renderDescription={row => row.description} // custom description render
-        onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+        renderDescription={row => row.description}
+        onPress={(data, details = null) => {
           this.props.onPress(data, details, this.props.isOrigin);
         }}
 
         getDefaultValue={() => ''}
 
         query={{
-          // available options: https://developers.google.com/places/web-service/autocomplete
           key: 'AIzaSyBUAfME2CHwOHyq4fT9VuMzkm7fIKpWNnY',
           language: 'en', // language of the results
           types: '(cities)' // default: 'geocode'
@@ -45,24 +44,20 @@ export default class AutoComplete extends Component {
           },
         }}
 
-        //currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
-        //currentLocationLabel="Current location"
-        nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+
+        nearbyPlacesAPI='GooglePlacesSearch'
+
         GoogleReverseGeocodingQuery={{
-          // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
         }}
         GooglePlacesSearchQuery={{
-          // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
           rankby: 'distance',
-          types: 'food'
         }}
 
-        filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+        filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']}
 
-        debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-        //renderLeftButton={()  => <Image source={require('./Images/chickenOrigin2.png')} />}
-        renderRightButton={() => <Text></Text>}
-      />
-      )
+        debounce={200}
+
+        renderRightButton={() => <Text></Text>}/>
+        )
     }
 }

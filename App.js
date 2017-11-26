@@ -7,25 +7,24 @@ import Settings from './App/Screens/Settings';
 import Profile from './App/Screens/Profile';
 
 var Root = TabNavigator({
-  Home: { screen: Home },
-  Map: { screen: Map },
-  Settings: { screen: Settings },
-}, {
-  tabBarPosition: 'bottom',
-  swipeEnabled: true,
-  tabBarOptions: {
-    activeTintColor: 'white',
-    activeBackgroundColor: 'blue',
-    inactiveTintColor: 'black',
-    inactiveBackgroundColor: 'orange',
-    labelStyle: {
-      fontSize: 16,
-      padding: 0,
-      fontFamily: 'Avenir',
-    }
-  }
-}
-);
+      Home: { screen: Home },
+      Map: { screen: Map },
+      Settings: { screen: Settings },
+  }, {
+      tabBarPosition: 'bottom',
+      swipeEnabled: true,
+      tabBarOptions: {
+        activeTintColor: 'white',
+        activeBackgroundColor: '#007EE9',
+        inactiveTintColor: 'black',
+        inactiveBackgroundColor: '#FD9B21',
+        labelStyle: {
+          fontSize: 16,
+          padding: 0,
+          fontFamily: 'Avenir',
+        }
+      }
+  });
 
 Root.navigationOptions = {
   title: "SearchUX"
