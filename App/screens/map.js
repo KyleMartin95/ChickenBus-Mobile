@@ -19,14 +19,6 @@ export default class Map extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        origin: {
-          lat: 0,
-          lng: 0,
-        },
-        destination: {
-          lat: 0,
-          lng: 0,
-        },
         activeMarkers: [],
         activePolylines: [],
         routeInfo: null
@@ -34,26 +26,14 @@ export default class Map extends React.Component {
     }
 
     render() {
-      {console.log(this.state)}
       return (
         <View style = { styles.container }>
-          <MapView style = { styles.container }
+          <MapView 
+            style = { styles.container }
             initialRegion = { initialRegion.location }
             provider = { MapView.PROVIDER_GOOGLE } >
-            { this.state.origin ?
-              <MapView.Marker
-                coordinate={{
-                  latitude: this.state.origin.lat,
-                  longitude: this.state.origin.lng
-                }}
-              />: null }
-            { this.state.destination ?
-              <MapView.Marker
-                coordinate={{
-                  latitude: this.state.destination.lat,
-                  longitude: this.state.destination.lng
-                }}
-              />: null }
+            { this.state.activeMarkers ? this.state.activeMarkers : null }
+            { this.state.activePolylines ? this.state.activePolylines : null }
             </MapView>
           </View>
 
@@ -75,23 +55,49 @@ export default class Map extends React.Component {
               )
               .then(response => response.json())
               .then(responseJson => {
-                  console.log(responseJson)
-                  if (responseJson.directions.length == 1) {
-                      this.setState({
-                        origin: {
-                          lat: responseJson.directions[0].orig[0],
-                          lng: responseJson.directions[0].orig[1],
-                        },
-                        destination: {
-                          lat: responseJson.directions[0].dest[0],
-                          lng: responseJson.directions[0].dest[1],
+                  if (responseJson.directions.length > 1) {
+                      responseJson.directions.forEach((direction, index) => {
+                        // Add origin stop only for first route so there are no overlapping markers
+                        if(index == 0) {
+                          activeMarkers.push(<MapView.Marker
+                                              key={"marker_"+index}
+                                              title={"Route "+(index+1) + " Origin"}
+                                              coordinate={{
+                                                latitude: direction.orig[0],
+                                                longitude: direction.orig[1]
+                                              }}/>)
                         }
+                        // Add destination stop for all routes.
+                        activeMarkers.push(<MapView.Marker
+                                              key={"marker_"+(index+1)}
+                                              title={"Route "+(index+1) + " Destination"}
+                                              coordinate={{
+                                                latitude: direction.dest[0],
+                                                longitude: direction.dest[1]
+                                              }}/>)
+                        activePolylines.push(<MapView.Polyline
+                                              key={"polyLine_"+index}
+                                              geodesic={true}
+                                              coordinates={[
+                                                {
+                                                  latitude: direction.orig[0],
+                                                  longitude: direction.orig[1]
+                                                },
+                                                {
+                                                  latitude: direction.dest[0],
+                                                  longitude: direction.dest[1]
+                                                }
+                                              ]}/>)
+                      });
+                      this.setState({
+                        activeMarkers: activeMarkers,
+                        activePolylines: activePolylines
                       });
                   }
               }).catch(e => {
                 this.setState({
-                  origin: undefined,
-                  destination: undefined,
+                  activeMarkers: undefined,
+                  activePolylines: undefined
               });
               });
             }
