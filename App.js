@@ -15,12 +15,11 @@ var Root = TabNavigator({
       swipeEnabled: true,
       tabBarOptions: {
         activeTintColor: 'white',
-        activeBackgroundColor: '#007EE9',
+        activeBackgroundColor: '#D33338',
         inactiveTintColor: 'black',
-        inactiveBackgroundColor: '#FD9B21',
+        inactiveBackgroundColor: '#FBAE00',
         labelStyle: {
           fontSize: 16,
-          padding: 0,
           fontFamily: 'Avenir',
         }
       }

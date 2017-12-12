@@ -55,7 +55,7 @@ export default class Home extends React.Component {
           <View style={styles.header}>
             <Image
               style={styles.logo}
-              source={require('../Components/Images/top.png')}
+              source={require('../Components/Images/chickenbus-logo.jpg')}
             />
             <Text style={styles.description}>Building Bus Routes Globally</Text>
           </View>
@@ -87,11 +87,10 @@ const styles = StyleSheet.create({
   header: {
      alignItems: 'center',
      flexGrow: 1,
-     justifyContent: 'center',
-     height: '30%',
+     justifyContent: 'center'
   },
   logo: {
-     width: 300,
+     width: 350,
      height: 100,
      padding: 10,
   },
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     textAlign: 'center',
-    color: '#007EE9',
+    color: '#FBAE00',
     fontWeight: '700',
     fontFamily: 'Avenir'
   },
