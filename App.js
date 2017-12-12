@@ -1,10 +1,10 @@
 import React from 'react';
 import Expo from 'expo';
 import { TabNavigator } from 'react-navigation';
-import Home from './App/Screens/Home';
-import Map from './App/Screens/Map';
-import Settings from './App/Screens/Settings';
-import Profile from './App/Screens/Profile';
+import Home from './App/screens/Home';
+import Map from './App/screens/Map';
+import Settings from './App/screens/Settings';
+import Profile from './App/screens/Profile';
 
 var Root = TabNavigator({
       Home: { screen: Home },
