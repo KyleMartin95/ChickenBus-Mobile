@@ -55,13 +55,15 @@ export default class Map extends React.Component {
               )
               .then(response => response.json())
               .then(responseJson => {
-                  if (responseJson.directions.length > 1) {
+                  if (responseJson.directions.length > 0) {
+                      let properties = responseJson.routesInfo;
+                      console.log(properties)
                       responseJson.directions.forEach((direction, index) => {
                         // Add origin stop only for first route so there are no overlapping markers
                         if(index == 0) {
                           activeMarkers.push(<MapView.Marker
                                               key={"marker_"+index}
-                                              title={"Route "+(index+1) + " Origin"}
+                                              title={"Origin"}
                                               coordinate={{
                                                 latitude: direction.orig[0],
                                                 longitude: direction.orig[1]
@@ -70,7 +72,8 @@ export default class Map extends React.Component {
                         // Add destination stop for all routes.
                         activeMarkers.push(<MapView.Marker
                                               key={"marker_"+(index+1)}
-                                              title={"Route "+(index+1) + " Destination"}
+                                              title={properties[index].properties.notes + " Destination"}
+                                              description={"Cost: $"+properties[index].properties.cost + '\n' + "Duration: " + properties[index].properties.duration + " minutes"+ '\n' + properties[index].properties.notes}
                                               coordinate={{
                                                 latitude: direction.dest[0],
                                                 longitude: direction.dest[1]
